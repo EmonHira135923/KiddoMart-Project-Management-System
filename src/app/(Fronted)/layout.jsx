@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Footer from "../componets/Shared/Footer";
-import Navvar from "../componets/Shared/Navvar";
+import Navvar from "@/src/componets/Shared/Navvar";
+import Footer from "@/src/componets/Shared/Footer";
 
 export const metadata = {
   title: {
