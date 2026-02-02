@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navvar from "@/src/componets/Shared/Navvar";
-import Footer from "@/src/componets/Shared/Footer";
+import { Toaster } from "react-hot-toast";
+import Layouts from "@/src/componets/Shared/Layouts";
 
 export const metadata = {
   title: {
@@ -24,19 +24,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.className} antialiased flex flex-col min-h-screen bg-slate-50`}
       >
-        {/* Header styling */}
-        <header className="bg-white shadow-sm sticky top-0 z-50">
-          <Navvar />
-        </header>
-
-        {/* Main content styling */}
-        <main className="flex-grow">{children}</main>
-
-        {/* Footer styling */}
-        <footer className="bg-white border-t">
-          <Footer />
-        </footer>
+        <Layouts> {children} </Layouts>
       </body>
+      <Toaster position="top-right" />
     </html>
   );
 }

@@ -1,5 +1,5 @@
-import { getUsers } from "../../lib/dbConnect";
-
+import bcrypt from "bcrypt";
+import { getUsers } from "../../../lib/dbConnect";
 // Get Method
 export async function GET(request) {
   try {
@@ -54,13 +54,25 @@ export async function POST(request) {
       );
     }
 
+    // 1. Existing User Check (Unique Email Validation)
+    const isExist = await userCollection.findOne({ email });
+    if (isExist) {
+      return Response.json(
+        { success: false, message: "User already exists with this email" },
+        { status: 400 },
+      );
+    }
+
+    const hasedPassword = await bcrypt.hash(password, 10);
+
     // Data Format Ready Kora
     const newUser = {
       name,
       email,
-      password, // Real project-e ekhane password hash kora uchit (bcrypt)
+      password: hasedPassword, // Real project-e ekhane password hash kora uchit (bcrypt)
       phone: phone || "",
       image: image || null,
+      role: "user",
       created_at: new Date(),
       updated_at: null, // Initial registration-e eta null thakbe
     };
@@ -72,6 +84,8 @@ export async function POST(request) {
     console.log("✅ New User Created Successfully:", {
       id: result.insertedId,
       email: newUser.email,
+      role: newUser.role,
+      image_url: newUser.image, // Log image url to verify
       timestamp: newUser.created_at,
     });
 

@@ -1,4 +1,10 @@
 import Link from "next/link";
+export const metadata = {
+  title: "Home - Kiddomart ",
+  // Description-ti ekhane change kora hoyeche SEO-friendly korar jonno
+  description:
+    "Kiddomart - The ultimate destination for premium quality kids' toys, clothing, and essentials. Explore joy for your little ones!",
+};
 
 export default function Home() {
   return (
