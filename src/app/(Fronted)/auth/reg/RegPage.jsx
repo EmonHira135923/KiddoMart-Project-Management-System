@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import RegisterForm from "@/src/componets/forms/RegisterForm";
+import RegisterForm from "@/src/componets/forms/auth/RegisterForm";
+import SocialButton from "@/src/componets/forms/auth/SocialButton";
 
 const RegPage = () => {
   return (
@@ -22,6 +23,21 @@ const RegPage = () => {
           </div>
 
           <RegisterForm />
+
+          {/* Divider */}
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-slate-800"></div>
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-slate-950 px-2 text-slate-500 font-bold tracking-widest">
+                Or continue with
+              </span>
+            </div>
+          </div>
+
+          {/* Social Buttons */}
+          <SocialButton />
 
           <div className="text-center mt-8">
             <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest">
